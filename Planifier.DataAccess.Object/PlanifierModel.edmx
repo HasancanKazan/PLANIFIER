@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PLANIFIERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCOUNT_TYPES">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PROJECTS">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="LogoPath" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreDate" Type="datetime" />
+          <Property Name="CreUserId" Type="int" />
+          <Property Name="ModDate" Type="datetime" />
+          <Property Name="ModUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="TODO_COMMENTS">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ToDoId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreDate" Type="datetime" />
+          <Property Name="CreUserId" Type="int" />
+          <Property Name="ModDate" Type="datetime" />
+          <Property Name="ModUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="TODO_PRIORTIES">
+          <Key>
+            <PropertyRef Name="PriortyId" />
+          </Key>
+          <Property Name="PriortyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Statu" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreDate" Type="datetime" />
+          <Property Name="CreUserId" Type="int" />
+          <Property Name="ModDate" Type="datetime" />
+          <Property Name="ModUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="TODO_STATUS">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TODOS">
+          <Key>
+            <PropertyRef Name="ToDoId" />
+          </Key>
+          <Property Name="ToDoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="Estimate" Type="int" />
+          <Property Name="Estimate_Type" Type="varchar" MaxLength="2" />
+          <Property Name="PriortyId" Type="int" />
+          <Property Name="Assignee" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreDate" Type="datetime" />
+          <Property Name="CreUserId" Type="int" />
+          <Property Name="ModDate" Type="datetime" />
+          <Property Name="ModUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="250" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProfilImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="AccountTypeId" Type="int" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreDate" Type="datetime" />
+          <Property Name="CreUserId" Type="int" />
+          <Property Name="ModDate" Type="datetime" />
+          <Property Name="ModUserId" Type="int" />
+        </EntityType>
+        <Association Name="FK__TODO_COMM__ToDoI__3C69FB99">
+          <End Role="TODOS" Type="Self.TODOS" Multiplicity="1" />
+          <End Role="TODO_COMMENTS" Type="Self.TODO_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TODOS">
+              <PropertyRef Name="ToDoId" />
+            </Principal>
+            <Dependent Role="TODO_COMMENTS">
+              <PropertyRef Name="ToDoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODO_COMM__UserI__3B75D760">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="TODO_COMMENTS" Type="Self.TODO_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TODO_COMMENTS">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODOS__PriortyId__37A5467C">
+          <End Role="TODO_PRIORTIES" Type="Self.TODO_PRIORTIES" Multiplicity="0..1" />
+          <End Role="TODOS" Type="Self.TODOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TODO_PRIORTIES">
+              <PropertyRef Name="PriortyId" />
+            </Principal>
+            <Dependent Role="TODOS">
+              <PropertyRef Name="PriortyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODOS__ProjectId__38996AB5">
+          <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="0..1" />
+          <End Role="TODOS" Type="Self.TODOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECTS">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="TODOS">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODOS__StatusId__36B12243">
+          <End Role="TODO_STATUS" Type="Self.TODO_STATUS" Multiplicity="0..1" />
+          <End Role="TODOS" Type="Self.TODOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TODO_STATUS">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="TODOS">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__AccountTy__2E1BDC42">
+          <End Role="ACCOUNT_TYPES" Type="Self.ACCOUNT_TYPES" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT_TYPES">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="AccountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PLANIFIERModelStoreContainer">
+          <EntitySet Name="ACCOUNT_TYPES" EntityType="Self.ACCOUNT_TYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TODO_COMMENTS" EntityType="Self.TODO_COMMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TODO_PRIORTIES" EntityType="Self.TODO_PRIORTIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TODO_STATUS" EntityType="Self.TODO_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TODOS" EntityType="Self.TODOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TODO_COMM__ToDoI__3C69FB99" Association="Self.FK__TODO_COMM__ToDoI__3C69FB99">
+            <End Role="TODOS" EntitySet="TODOS" />
+            <End Role="TODO_COMMENTS" EntitySet="TODO_COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODO_COMM__UserI__3B75D760" Association="Self.FK__TODO_COMM__UserI__3B75D760">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="TODO_COMMENTS" EntitySet="TODO_COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODOS__PriortyId__37A5467C" Association="Self.FK__TODOS__PriortyId__37A5467C">
+            <End Role="TODO_PRIORTIES" EntitySet="TODO_PRIORTIES" />
+            <End Role="TODOS" EntitySet="TODOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODOS__ProjectId__38996AB5" Association="Self.FK__TODOS__ProjectId__38996AB5">
+            <End Role="PROJECTS" EntitySet="PROJECTS" />
+            <End Role="TODOS" EntitySet="TODOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODOS__StatusId__36B12243" Association="Self.FK__TODOS__StatusId__36B12243">
+            <End Role="TODO_STATUS" EntitySet="TODO_STATUS" />
+            <End Role="TODOS" EntitySet="TODOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__AccountTy__2E1BDC42" Association="Self.FK__USERS__AccountTy__2E1BDC42">
+            <End Role="ACCOUNT_TYPES" EntitySet="ACCOUNT_TYPES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PLANIFIERModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACCOUNT_TYPES">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__AccountTy__2E1BDC42" FromRole="ACCOUNT_TYPES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LogoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreDate" Type="DateTime" Precision="3" />
+          <Property Name="CreUserId" Type="Int32" />
+          <Property Name="ModDate" Type="DateTime" Precision="3" />
+          <Property Name="ModUserId" Type="Int32" />
+          <NavigationProperty Name="TODOS" Relationship="Self.FK__TODOS__ProjectId__38996AB5" FromRole="PROJECTS" ToRole="TODOS" />
+        </EntityType>
+        <EntityType Name="TODO_COMMENTS">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ToDoId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreDate" Type="DateTime" Precision="3" />
+          <Property Name="CreUserId" Type="Int32" />
+          <Property Name="ModDate" Type="DateTime" Precision="3" />
+          <Property Name="ModUserId" Type="Int32" />
+          <NavigationProperty Name="TODO" Relationship="Self.FK__TODO_COMM__ToDoI__3C69FB99" FromRole="TODO_COMMENTS" ToRole="TODOS" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__TODO_COMM__UserI__3B75D760" FromRole="TODO_COMMENTS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="TODO_PRIORTIES">
+          <Key>
+            <PropertyRef Name="PriortyId" />
+          </Key>
+          <Property Name="PriortyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Statu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreDate" Type="DateTime" Precision="3" />
+          <Property Name="CreUserId" Type="Int32" />
+          <Property Name="ModDate" Type="DateTime" Precision="3" />
+          <Property Name="ModUserId" Type="Int32" />
+          <NavigationProperty Name="TODOS" Relationship="Self.FK__TODOS__PriortyId__37A5467C" FromRole="TODO_PRIORTIES" ToRole="TODOS" />
+        </EntityType>
+        <EntityType Name="TODO_STATUS">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TODOS" Relationship="Self.FK__TODOS__StatusId__36B12243" FromRole="TODO_STATUS" ToRole="TODOS" />
+        </EntityType>
+        <EntityType Name="TODO">
+          <Key>
+            <PropertyRef Name="ToDoId" />
+          </Key>
+          <Property Name="ToDoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="Estimate" Type="Int32" />
+          <Property Name="Estimate_Type" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PriortyId" Type="Int32" />
+          <Property Name="Assignee" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreDate" Type="DateTime" Precision="3" />
+          <Property Name="CreUserId" Type="Int32" />
+          <Property Name="ModDate" Type="DateTime" Precision="3" />
+          <Property Name="ModUserId" Type="Int32" />
+          <NavigationProperty Name="PROJECT" Relationship="Self.FK__TODOS__ProjectId__38996AB5" FromRole="TODOS" ToRole="PROJECTS" />
+          <NavigationProperty Name="TODO_COMMENTS" Relationship="Self.FK__TODO_COMM__ToDoI__3C69FB99" FromRole="TODOS" ToRole="TODO_COMMENTS" />
+          <NavigationProperty Name="TODO_PRIORTIES" Relationship="Self.FK__TODOS__PriortyId__37A5467C" FromRole="TODOS" ToRole="TODO_PRIORTIES" />
+          <NavigationProperty Name="TODO_STATUS" Relationship="Self.FK__TODOS__StatusId__36B12243" FromRole="TODOS" ToRole="TODO_STATUS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AccountTypeId" Type="Int32" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreDate" Type="DateTime" Precision="3" />
+          <Property Name="CreUserId" Type="Int32" />
+          <Property Name="ModDate" Type="DateTime" Precision="3" />
+          <Property Name="ModUserId" Type="Int32" />
+          <NavigationProperty Name="ACCOUNT_TYPES" Relationship="Self.FK__USERS__AccountTy__2E1BDC42" FromRole="USERS" ToRole="ACCOUNT_TYPES" />
+          <NavigationProperty Name="TODO_COMMENTS" Relationship="Self.FK__TODO_COMM__UserI__3B75D760" FromRole="USERS" ToRole="TODO_COMMENTS" />
+        </EntityType>
+        <Association Name="FK__USERS__AccountTy__2E1BDC42">
+          <End Role="ACCOUNT_TYPES" Type="Self.ACCOUNT_TYPES" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT_TYPES">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="AccountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODOS__ProjectId__38996AB5">
+          <End Role="PROJECTS" Type="Self.PROJECT" Multiplicity="0..1" />
+          <End Role="TODOS" Type="Self.TODO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECTS">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="TODOS">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODO_COMM__ToDoI__3C69FB99">
+          <End Role="TODOS" Type="Self.TODO" Multiplicity="1" />
+          <End Role="TODO_COMMENTS" Type="Self.TODO_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TODOS">
+              <PropertyRef Name="ToDoId" />
+            </Principal>
+            <Dependent Role="TODO_COMMENTS">
+              <PropertyRef Name="ToDoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODO_COMM__UserI__3B75D760">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="TODO_COMMENTS" Type="Self.TODO_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TODO_COMMENTS">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODOS__PriortyId__37A5467C">
+          <End Role="TODO_PRIORTIES" Type="Self.TODO_PRIORTIES" Multiplicity="0..1" />
+          <End Role="TODOS" Type="Self.TODO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TODO_PRIORTIES">
+              <PropertyRef Name="PriortyId" />
+            </Principal>
+            <Dependent Role="TODOS">
+              <PropertyRef Name="PriortyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TODOS__StatusId__36B12243">
+          <End Role="TODO_STATUS" Type="Self.TODO_STATUS" Multiplicity="0..1" />
+          <End Role="TODOS" Type="Self.TODO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TODO_STATUS">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="TODOS">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PLANIFIEREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCOUNT_TYPES" EntityType="Self.ACCOUNT_TYPES" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECT" />
+          <EntitySet Name="TODO_COMMENTS" EntityType="Self.TODO_COMMENTS" />
+          <EntitySet Name="TODO_PRIORTIES" EntityType="Self.TODO_PRIORTIES" />
+          <EntitySet Name="TODO_STATUS" EntityType="Self.TODO_STATUS" />
+          <EntitySet Name="TODOS" EntityType="Self.TODO" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK__USERS__AccountTy__2E1BDC42" Association="Self.FK__USERS__AccountTy__2E1BDC42">
+            <End Role="ACCOUNT_TYPES" EntitySet="ACCOUNT_TYPES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODOS__ProjectId__38996AB5" Association="Self.FK__TODOS__ProjectId__38996AB5">
+            <End Role="PROJECTS" EntitySet="PROJECTS" />
+            <End Role="TODOS" EntitySet="TODOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODO_COMM__ToDoI__3C69FB99" Association="Self.FK__TODO_COMM__ToDoI__3C69FB99">
+            <End Role="TODOS" EntitySet="TODOS" />
+            <End Role="TODO_COMMENTS" EntitySet="TODO_COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODO_COMM__UserI__3B75D760" Association="Self.FK__TODO_COMM__UserI__3B75D760">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="TODO_COMMENTS" EntitySet="TODO_COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODOS__PriortyId__37A5467C" Association="Self.FK__TODOS__PriortyId__37A5467C">
+            <End Role="TODO_PRIORTIES" EntitySet="TODO_PRIORTIES" />
+            <End Role="TODOS" EntitySet="TODOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TODOS__StatusId__36B12243" Association="Self.FK__TODOS__StatusId__36B12243">
+            <End Role="TODO_STATUS" EntitySet="TODO_STATUS" />
+            <End Role="TODOS" EntitySet="TODOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PLANIFIERModelStoreContainer" CdmEntityContainer="PLANIFIEREntities">
+          <EntitySetMapping Name="ACCOUNT_TYPES">
+            <EntityTypeMapping TypeName="PLANIFIERModel.ACCOUNT_TYPES">
+              <MappingFragment StoreEntitySet="ACCOUNT_TYPES">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECTS">
+            <EntityTypeMapping TypeName="PLANIFIERModel.PROJECT">
+              <MappingFragment StoreEntitySet="PROJECTS">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+                <ScalarProperty Name="CreUserId" ColumnName="CreUserId" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="ModUserId" ColumnName="ModUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TODO_COMMENTS">
+            <EntityTypeMapping TypeName="PLANIFIERModel.TODO_COMMENTS">
+              <MappingFragment StoreEntitySet="TODO_COMMENTS">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ToDoId" ColumnName="ToDoId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+                <ScalarProperty Name="CreUserId" ColumnName="CreUserId" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="ModUserId" ColumnName="ModUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TODO_PRIORTIES">
+            <EntityTypeMapping TypeName="PLANIFIERModel.TODO_PRIORTIES">
+              <MappingFragment StoreEntitySet="TODO_PRIORTIES">
+                <ScalarProperty Name="PriortyId" ColumnName="PriortyId" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+                <ScalarProperty Name="CreUserId" ColumnName="CreUserId" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="ModUserId" ColumnName="ModUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TODO_STATUS">
+            <EntityTypeMapping TypeName="PLANIFIERModel.TODO_STATUS">
+              <MappingFragment StoreEntitySet="TODO_STATUS">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TODOS">
+            <EntityTypeMapping TypeName="PLANIFIERModel.TODO">
+              <MappingFragment StoreEntitySet="TODOS">
+                <ScalarProperty Name="ToDoId" ColumnName="ToDoId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Estimate" ColumnName="Estimate" />
+                <ScalarProperty Name="Estimate_Type" ColumnName="Estimate_Type" />
+                <ScalarProperty Name="PriortyId" ColumnName="PriortyId" />
+                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+                <ScalarProperty Name="CreUserId" ColumnName="CreUserId" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="ModUserId" ColumnName="ModUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="PLANIFIERModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ProfilImagePath" ColumnName="ProfilImagePath" />
+                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreDate" ColumnName="CreDate" />
+                <ScalarProperty Name="CreUserId" ColumnName="CreUserId" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="ModUserId" ColumnName="ModUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
