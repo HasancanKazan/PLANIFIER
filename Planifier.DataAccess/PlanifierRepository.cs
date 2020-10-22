@@ -15,9 +15,9 @@ namespace Planifier.DataAccess
         private DbSet<T> _dbSet;
 
 
-        public PlanifierRepository()
+        public PlanifierRepository(PlanifierDatabaseContext dbContext)
         {
-            _dbContext = PlanifierRepositoryBase.CreateContext();
+            _dbContext = PlanifierRepositoryBase.CreateContext(dbContext);
             _dbSet = _dbContext.Set<T>();
         }
 
@@ -38,12 +38,12 @@ namespace Planifier.DataAccess
             return _dbContext.SaveChanges();
         }
 
-        public async Task<IEnumerable<T>> Select(Expression<Func<T, bool>> where)
+        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> where)
         {
             return await _dbSet.Where(where).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> FindAll()
         {
             return await _dbSet.ToListAsync();
         }
@@ -53,5 +53,9 @@ namespace Planifier.DataAccess
             return await _dbSet.FindAsync(id);
         }
 
+        public async Task<T> FindOne(Expression<Func<T, bool>> where)
+        {
+            return await _dbSet.FirstOrDefaultAsync(where);
+        }
     }
 }
