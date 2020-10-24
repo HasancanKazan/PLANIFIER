@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planifier.DataAccess.Object
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planifier.Web", "Planifier.Web\Planifier.Web.csproj", "{24DFC63F-0BF0-4FDE-BE68-0DF36E056388}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{7E7A1936-BF32-42F3-9BB7-EF394E876F22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planifier.BusinessLogicLayer", "Planifier.BusinessLogicLayer\Planifier.BusinessLogicLayer.csproj", "{C035720C-98BD-4295-B164-0E033038E456}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{24DFC63F-0BF0-4FDE-BE68-0DF36E056388}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24DFC63F-0BF0-4FDE-BE68-0DF36E056388}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24DFC63F-0BF0-4FDE-BE68-0DF36E056388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C035720C-98BD-4295-B164-0E033038E456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C035720C-98BD-4295-B164-0E033038E456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C035720C-98BD-4295-B164-0E033038E456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C035720C-98BD-4295-B164-0E033038E456}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,7 @@ Global
 		{E632F8F4-700D-426F-A161-72115FC45456} = {0740385E-BA29-47B4-AE4C-A5CDB52C0085}
 		{0A043E5D-F35E-4E72-9FCD-8AFB5D9AA35B} = {0740385E-BA29-47B4-AE4C-A5CDB52C0085}
 		{24DFC63F-0BF0-4FDE-BE68-0DF36E056388} = {4FCDCD67-937C-4550-A485-69B41B60AC92}
+		{C035720C-98BD-4295-B164-0E033038E456} = {7E7A1936-BF32-42F3-9BB7-EF394E876F22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5869101F-2D6B-4CA6-B43E-84DAB692A836}

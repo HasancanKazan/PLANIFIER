@@ -9,10 +9,11 @@ namespace Planifier.DataAccess.Abstract
 {
     public interface IPlanifierRepository<T>
     {
+        void Add(T obj);
         int Insert(T obj);
         int Delete(T obj);
         int Update(T obj);
-        Task<IEnumerable<T>> FindAll();
+       IEnumerable<T> FindAll();
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> where);
         Task<T> FindOne(Expression<Func<T, bool>> where);
         Task<T> GetById(object id);

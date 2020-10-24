@@ -8,7 +8,7 @@ namespace Planifier.DataAccess
 {
     public class PlanifierRepositoryBase
     {
-        //private static PlanifierDatabaseContext _db;
+        private static PlanifierDatabaseContext _db;
         private static object _lock = new object();
         
         public PlanifierRepositoryBase()
@@ -16,16 +16,16 @@ namespace Planifier.DataAccess
 
         }
 
-        public static PlanifierDatabaseContext CreateContext(PlanifierDatabaseContext dbContext)
+        public static PlanifierDatabaseContext CreateContext()
         {
-            if (dbContext == null)
+            if (_db == null)
             {
                 lock (_lock)
                 {
-                    dbContext = new PlanifierDatabaseContext();
+                    _db = new PlanifierDatabaseContext();
                 }
             }
-            return dbContext;
+            return _db;
         }
     }
 }

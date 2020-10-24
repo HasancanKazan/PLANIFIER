@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Planifier.DataAccess.Object;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Planifier.DataAccess
 {
-    public class PlanifierDatabaseContext : DbContext
+    public class PlanifierDatabaseContext : PLANIFIEREntities
     {
     }
 }

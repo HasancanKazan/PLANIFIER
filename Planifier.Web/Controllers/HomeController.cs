@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Planifier.BusinessLogicLayer.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,9 @@ namespace Planifier.Web.Controllers
     {
         public ActionResult Index()
         {
+            UserManager pum = new UserManager();
+            pum.Test();
+
             return View();
         }
 
