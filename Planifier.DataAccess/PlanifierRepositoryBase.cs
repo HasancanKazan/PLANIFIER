@@ -10,7 +10,7 @@ namespace Planifier.DataAccess
     {
         private static PlanifierDatabaseContext _db;
         private static object _lock = new object();
-        
+
         public PlanifierRepositoryBase()
         {
 
@@ -22,7 +22,10 @@ namespace Planifier.DataAccess
             {
                 lock (_lock)
                 {
-                    _db = new PlanifierDatabaseContext();
+                    if (_db == null)
+                    {
+                        _db = new PlanifierDatabaseContext();
+                    }
                 }
             }
             return _db;
