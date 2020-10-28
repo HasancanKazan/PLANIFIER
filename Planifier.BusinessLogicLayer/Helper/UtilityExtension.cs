@@ -3,9 +3,9 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Planifier.DataAccess.Object.Extensions
+namespace Planifier.BusinessLogicLayer.Helper
 {
-    public static class Utility
+    public static class UtilityExtension
     {
         public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
         {

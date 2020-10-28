@@ -1,27 +1,21 @@
-﻿using Planifier.DataAccess.Object.Model;
-using Planifier.Service.UserService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Planifier.BusinessLogicLayer.Interface.User;
+using Planifier.DataAccess.Object.Model;
 using System.Web.Mvc;
 
 namespace Planifier.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IUserManager _userManager;
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserManager userManager)
         {
-            _userService = userService;
+            _userManager = userManager;
         }
 
         public ActionResult Index()
         {
-
-            _userService.UserSearch(new UserRequest() { FirstName = "Cemil", UserName = "Alkan" });
-
+            _userManager.UserSearch(new UserRequest() { UserId = 2,IsDeleted=true});
             return View();
         }
 

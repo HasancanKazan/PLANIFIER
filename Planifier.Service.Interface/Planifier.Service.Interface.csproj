@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C9B17C2-C5FC-41E3-8D01-D69EEF9C2C22}</ProjectGuid>
+    <ProjectGuid>{5B462A8C-76BF-40E6-885E-97732EC74A4F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Planifier.Service</RootNamespace>
-    <AssemblyName>Planifier.Service</AssemblyName>
+    <RootNamespace>Planifier.Service.Interface</RootNamespace>
+    <AssemblyName>Planifier.Service.Interface</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,21 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Planifier.BusinessLogicLayer\Planifier.BusinessLogicLayer.csproj">
-      <Project>{c035720c-98bd-4295-b164-0e033038e456}</Project>
-      <Name>Planifier.BusinessLogicLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Planifier.DataAccess.Object\Planifier.DataAccess.Object.csproj">
       <Project>{0A043E5D-F35E-4E72-9FCD-8AFB5D9AA35B}</Project>
       <Name>Planifier.DataAccess.Object</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Planifier.DataAccess\Planifier.DataAccess.csproj">
-      <Project>{E632F8F4-700D-426F-A161-72115FC45456}</Project>
-      <Name>Planifier.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Planifier.Service.Interface\Planifier.Service.Interface.csproj">
-      <Project>{5B462A8C-76BF-40E6-885E-97732EC74A4F}</Project>
-      <Name>Planifier.Service.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
