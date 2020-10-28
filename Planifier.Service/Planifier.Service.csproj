@@ -54,6 +54,10 @@
       <Project>{0A043E5D-F35E-4E72-9FCD-8AFB5D9AA35B}</Project>
       <Name>Planifier.DataAccess.Object</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Planifier.DataAccess\Planifier.DataAccess.csproj">
+      <Project>{E632F8F4-700D-426F-A161-72115FC45456}</Project>
+      <Name>Planifier.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

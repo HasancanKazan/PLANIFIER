@@ -20,7 +20,7 @@ namespace Planifier.Web.Controllers
         public ActionResult Index()
         {
 
-            //userService.UserSearch(new UserRequest() { FirstName = "Cemil", UserName = "Alkan" });
+            _userService.UserSearch(new UserRequest() { FirstName = "Cemil", UserName = "Alkan" });
 
             return View();
         }
