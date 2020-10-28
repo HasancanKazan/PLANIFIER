@@ -11,22 +11,39 @@ namespace Planifier.BusinessLogicLayer.User
 {
     public class UserManager
     {
-        public void Test()
+        private IPlanifierRepository<USER> userRepo;
+
+        //public void Test()
+        //{
+        //    using (IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext()))
+        //    {
+        //        accountRepo = uow.GetRepository<ACCOUNT_TYPES>();
+
+        //        accountRepo.Add(new ACCOUNT_TYPES()
+        //        {
+        //            AccountName = "Test",
+        //            Description = "Test",
+        //        });
+        //        accountRepo.Add(new ACCOUNT_TYPES()
+        //        {
+        //            AccountName = "Admin",
+        //            Description = "Tüm Yetkilere Sahip Kullanıcı",
+        //        });
+
+        //        uow.SaveChanges();
+        //    }
+
+        //}
+
+
+
+        public void UserExist(USER request)
         {
             using (IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext()))
             {
-                IPlanifierRepository<ACCOUNT_TYPES> accountRepo = uow.GetRepository<ACCOUNT_TYPES>();
+                userRepo = uow.GetRepository<USER>();
 
-                accountRepo.Add(new ACCOUNT_TYPES()
-                {
-                    AccountName = "Test",
-                    Description = "Test",
-                });
-                accountRepo.Add(new ACCOUNT_TYPES()
-                {
-                    AccountName = "Admin",
-                    Description = "Tüm Yetkilere Sahip Kullanıcı",
-                });
+                var user = userRepo.FindOne(u => u.UserName == request.UserName);
 
                 uow.SaveChanges();
             }
