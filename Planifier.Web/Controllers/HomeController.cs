@@ -12,7 +12,7 @@ namespace Planifier.Web.Controllers
         public ActionResult Index()
         {
             UserManager pum = new UserManager();
-            pum.Test();
+            //pum.Test();
 
             return View();
         }
@@ -28,6 +28,12 @@ namespace Planifier.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+
+        public ActionResult Login()
+        {
             return View();
         }
     }
