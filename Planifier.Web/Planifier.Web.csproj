@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -280,16 +281,20 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Planifier.BusinessLogicLayer\Planifier.BusinessLogicLayer.csproj">
-      <Project>{C035720C-98BD-4295-B164-0E033038E456}</Project>
-      <Name>Planifier.BusinessLogicLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Planifier.DataAccess.Object\Planifier.DataAccess.Object.csproj">
+      <Project>{0A043E5D-F35E-4E72-9FCD-8AFB5D9AA35B}</Project>
+      <Name>Planifier.DataAccess.Object</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Planifier.Service\Planifier.Service.csproj">
+      <Project>{8c9b17c2-c5fc-41e3-8d01-d69eef9c2c22}</Project>
+      <Name>Planifier.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

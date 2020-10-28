@@ -1,4 +1,5 @@
-﻿using Planifier.BusinessLogicLayer.User;
+﻿using Planifier.DataAccess.Object.Model;
+using Planifier.Service.UserService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,17 @@ namespace Planifier.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserService _userService;
+
+        public HomeController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         public ActionResult Index()
         {
-            UserManager pum = new UserManager();
-            pum.Test();
+
+            //userService.UserSearch(new UserRequest() { FirstName = "Cemil", UserName = "Alkan" });
 
             return View();
         }
