@@ -1,53 +1,57 @@
 ﻿using Planifier.DataAccess;
 using Planifier.DataAccess.Abstract;
+using Planifier.DataAccess.Object.Model;
 using Planifier.DataAccess.Object;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
+using Planifier.BusinessLogicLayer.Helper;
+using Planifier.BusinessLogicLayer.Interface.User;
 
 namespace Planifier.BusinessLogicLayer.User
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
-        private IPlanifierRepository<USER> userRepo;
+        private static IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext());
+        private readonly IPlanifierRepository<USER> userRep = uow.GetRepository<USER>();
 
-        //public void Test()
-        //{
-        //    using (IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext()))
-        //    {
-        //        accountRepo = uow.GetRepository<ACCOUNT_TYPES>();
-
-        //        accountRepo.Add(new ACCOUNT_TYPES()
-        //        {
-        //            AccountName = "Test",
-        //            Description = "Test",
-        //        });
-        //        accountRepo.Add(new ACCOUNT_TYPES()
-        //        {
-        //            AccountName = "Admin",
-        //            Description = "Tüm Yetkilere Sahip Kullanıcı",
-        //        });
-
-        //        uow.SaveChanges();
-        //    }
-
-        //}
-
-
-
-        public void UserExist(USER request)
+        public List<USER> UserSearch(UserRequest request)
         {
-            using (IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext()))
+            using (uow)
             {
-                userRepo = uow.GetRepository<USER>();
+                Expression<Func<USER, bool>> query = p => p.IsDeleted.Value == false;
 
-                var user = userRepo.FindOne(u => u.UserName == request.UserName);
+                if (!string.IsNullOrEmpty(request.FirstName))
+                {
+                    query = query.And(p => p.FirstName == request.FirstName);
+                }
 
-                uow.SaveChanges();
+                if (!string.IsNullOrEmpty(request.LastName))
+                {
+                    query = query.And(p => p.LastName == request.LastName);
+                }
+
+                if (request.UserId.HasValue)
+                {
+                    query = query.And(p => p.UserId == request.UserId);
+                }
+
+                if (request.AccountTypeId.HasValue)
+                {
+                    query = query.And(p => p.AccountTypeId == request.AccountTypeId);
+                }
+
+                if (request.IsActive.HasValue)
+                {
+                    query = query.And(p => p.IsActive == request.IsActive);
+                }
+
+                var list = userRep.Find(query)
+                                  .OrderByDescending(f => f.FirstName)
+                                  .ToList();
+                return list;
             }
-
         }
     }
 }

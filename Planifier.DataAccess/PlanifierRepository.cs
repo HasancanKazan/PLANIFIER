@@ -38,9 +38,9 @@ namespace Planifier.DataAccess
             return _dbContext.SaveChanges();
         }
 
-        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> where)
+        public IEnumerable<T> Find(Expression<Func<T, bool>> where)
         {
-            return await _dbSet.Where(where).ToListAsync();
+            return _dbSet.Where(where).ToList();
         }
 
         public  IEnumerable<T> FindAll()

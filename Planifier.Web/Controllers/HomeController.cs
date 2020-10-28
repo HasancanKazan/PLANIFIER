@@ -1,19 +1,21 @@
-﻿using Planifier.BusinessLogicLayer.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Planifier.BusinessLogicLayer.Interface.User;
+using Planifier.DataAccess.Object.Model;
 using System.Web.Mvc;
 
 namespace Planifier.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserManager _userManager;
+
+        public HomeController(IUserManager userManager)
+        {
+            _userManager = userManager;
+        }
+
         public ActionResult Index()
         {
-            UserManager pum = new UserManager();
-            //pum.Test();
-
+            _userManager.UserSearch(new UserRequest() { UserId = 2,IsDeleted=true});
             return View();
         }
 
@@ -28,12 +30,6 @@ namespace Planifier.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-
-        public ActionResult Login()
-        {
             return View();
         }
     }
