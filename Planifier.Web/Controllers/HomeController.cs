@@ -13,6 +13,7 @@ namespace Planifier.Web.Controllers
             _userManager = userManager;
         }
 
+
         public ActionResult Index()
         {
             _userManager.UserSearch(new UserRequest() { UserId = 2,IsDeleted=true});
@@ -30,6 +31,12 @@ namespace Planifier.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+
+        public ActionResult Login()
+        {
             return View();
         }
     }
