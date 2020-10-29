@@ -13,13 +13,16 @@ namespace Planifier.BusinessLogicLayer.User
 {
     public class UserManager : IUserManager
     {
+
         private static IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext());
         private readonly IPlanifierRepository<USER> userRep = uow.GetRepository<USER>();
 
         public List<USER> UserSearch(UserRequest request)
+
         {
             using (uow)
             {
+
                 Expression<Func<USER, bool>> query = p => p.IsDeleted.Value == false;
 
                 if (!string.IsNullOrEmpty(request.FirstName))
