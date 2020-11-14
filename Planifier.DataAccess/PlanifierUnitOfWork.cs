@@ -1,4 +1,4 @@
-﻿using Planifier.DataAccess.Abstract;
+﻿using Planifier.Data.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace Planifier.DataAccess
 
         public IPlanifierRepository<T> GetRepository<T>() where T : class
         {
-            return new PlanifierRepository<T>();
+            return new PlanifierRepository<T>(_dbContext);
         }
 
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Planifier.DataAccess.Object.Model
+namespace Planifier.Core.Contracts.ResponseMessages
 {
-    public class UserRequest
+    public class UserResponse
     {
         public int? UserId { get; set; }
         public string UserName { get; set; }

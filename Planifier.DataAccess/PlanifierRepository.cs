@@ -1,4 +1,4 @@
-﻿using Planifier.DataAccess.Abstract;
+﻿using Planifier.Data.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,13 +11,13 @@ namespace Planifier.DataAccess
 {
     public class PlanifierRepository<T> : IPlanifierRepository<T> where T : class
     {
-        private PlanifierDatabaseContext _dbContext;
-        private DbSet<T> _dbSet;
+        private readonly PlanifierDatabaseContext _dbContext;
+        private readonly DbSet<T> _dbSet;
 
 
-        public PlanifierRepository()
+        public PlanifierRepository(PlanifierDatabaseContext databaseContext)
         {
-            _dbContext = PlanifierRepositoryBase.CreateContext();
+            _dbContext = databaseContext; //PlanifierRepositoryBase.CreateContext();
             _dbSet = _dbContext.Set<T>();
         }
         
