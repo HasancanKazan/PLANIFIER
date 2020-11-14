@@ -1,6 +1,4 @@
 ﻿using Planifier.DataAccess;
-using Planifier.DataAccess.Abstract;
-using Planifier.DataAccess.Object.Model;
 using Planifier.DataAccess.Object;
 using System;
 using System.Collections.Generic;
@@ -8,17 +6,25 @@ using System.Linq;
 using System.Linq.Expressions;
 using Planifier.BusinessLogicLayer.Helper;
 using Planifier.BusinessLogicLayer.Interface.User;
+using Planifier.Data.Contracts;
+using System.Threading.Tasks;
+using Planifier.Core.Contracts.ResponseMessages;
+using Planifier.Core.Contracts.RequestMessages;
 
 namespace Planifier.BusinessLogicLayer.User
 {
-    public class UserManager : IUserManager
+    public class UserManager : BusinessManagerBase, IUserManager
     {
+        private readonly IUserRepository _userRepository;
+        public UserManager(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         private static IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext());
         private readonly IPlanifierRepository<USER> userRep = uow.GetRepository<USER>();
 
-        public List<USER> UserSearch(UserRequest request)
-
+        public Task<UserResponse> UserSearch(UserRequest request)
         {
             using (uow)
             {
@@ -50,10 +56,18 @@ namespace Planifier.BusinessLogicLayer.User
                     query = query.And(p => p.IsActive == request.IsActive);
                 }
 
-                var list = userRep.Find(query)
+                //var config = new MapperConfiguration(cfg => { cfg.CreateMap<USER, UserResponse>(); });
+                //IMapper iMapper = config.CreateMapper();
+                //var model = iMapper.Map<USER, UserResponse>(user);
+
+                return base.ExecuteWithExeptionHandledOperation(async () =>
+                {
+                    var user = userRep.Find(query)
                                   .OrderByDescending(f => f.FirstName)
-                                  .ToList();
-                return list;
+                                  .FirstOrDefault();
+                    return Mapper.Map<UserResponse>(user);
+                });
+
             }
         }
     }

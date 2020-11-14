@@ -53,20 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IPlanifierRepository.cs" />
-    <Compile Include="Abstract\IPlanifierUnitOfWork.cs" />
     <Compile Include="PlanifierDatabaseContext.cs" />
     <Compile Include="PlanifierRepositoryBase.cs" />
     <Compile Include="PlanifierUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlanifierRepository.cs" />
-    <Compile Include="User\UserRepository.cs" />
+    <Compile Include="DataRepositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Planifier.Data.Contracts\Planifier.Data.Contracts.csproj">
+      <Project>{54726ce6-da7a-4708-8d12-69010e137567}</Project>
+      <Name>Planifier.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Planifier.DataAccess.Object\Planifier.DataAccess.Object.csproj">
       <Project>{0A043E5D-F35E-4E72-9FCD-8AFB5D9AA35B}</Project>
       <Name>Planifier.DataAccess.Object</Name>

@@ -54,7 +54,6 @@
     <Compile Include="ACCOUNT_TYPES.cs">
       <DependentUpon>PlanifierModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\UserRequest.cs" />
     <Compile Include="PlanifierModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
