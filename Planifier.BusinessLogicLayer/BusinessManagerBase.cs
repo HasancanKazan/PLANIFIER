@@ -19,7 +19,7 @@ namespace Planifier.BusinessLogicLayer
                 EntitiesToResponseMessages.Map(cfg);
             });
 
-            var mapper = mapperConfiguration.CreateMapper();
+            Mapper = mapperConfiguration.CreateMapper();
         }
 
         protected T ExecuteWithExeptionHandledOperation<T>(Func<T> func)
