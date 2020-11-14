@@ -18,7 +18,7 @@ namespace Planifier.Web.Controllers
         {
             var userRequest = new UserRequest
             {
-                UserId=1
+                UserId = 1
             };
             var user = _userManager.UserSearch(userRequest);
 
