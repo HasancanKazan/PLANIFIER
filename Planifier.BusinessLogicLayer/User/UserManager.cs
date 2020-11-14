@@ -28,7 +28,6 @@ namespace Planifier.BusinessLogicLayer.User
         {
             using (uow)
             {
-
                 Expression<Func<USER, bool>> query = p => p.IsDeleted.Value == false;
 
                 if (!string.IsNullOrEmpty(request.FirstName))
@@ -55,10 +54,6 @@ namespace Planifier.BusinessLogicLayer.User
                 {
                     query = query.And(p => p.IsActive == request.IsActive);
                 }
-
-                //var config = new MapperConfiguration(cfg => { cfg.CreateMap<USER, UserResponse>(); });
-                //IMapper iMapper = config.CreateMapper();
-                //var model = iMapper.Map<USER, UserResponse>(user);
 
                 return base.ExecuteWithExeptionHandledOperation(async () =>
                 {
