@@ -1,5 +1,5 @@
 ﻿using Planifier.BusinessLogicLayer.Interface.User;
-using Planifier.DataAccess.Object.Model;
+using Planifier.Core.Contracts.RequestMessages;
 using System.Web.Mvc;
 
 namespace Planifier.Web.Controllers
@@ -16,7 +16,12 @@ namespace Planifier.Web.Controllers
 
         public ActionResult Index()
         {
-            _userManager.UserSearch(new UserRequest() { UserId = 2,IsDeleted=true});
+            var userRequest = new UserRequest
+            {
+                UserId = 1
+            };
+            var user = _userManager.UserSearch(userRequest);
+
             return View();
         }
 

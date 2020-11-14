@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C035720C-98BD-4295-B164-0E033038E456}</ProjectGuid>
+    <ProjectGuid>{54726CE6-DA7A-4708-8D12-69010E137567}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Planifier.BusinessLogicLayer</RootNamespace>
-    <AssemblyName>Planifier.BusinessLogicLayer</AssemblyName>
+    <RootNamespace>Planifier.Data.Contracts</RootNamespace>
+    <AssemblyName>Planifier.Data.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,16 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="NPoco, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPoco.4.0.3\lib\net45\NPoco.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,39 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessManagerBase.cs" />
-    <Compile Include="Helper\UtilityExtension.cs" />
-    <Compile Include="User\UserManager.cs" />
+    <Compile Include="IPlanifierRepository.cs" />
+    <Compile Include="IPlanifierUnitOfWork.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Planifier.BusinessLogicLayer.Interface\Planifier.BusinessLogicLayer.Interface.csproj">
-      <Project>{B10EFC6E-8572-4A15-8AB5-4416C4A33D73}</Project>
-      <Name>Planifier.BusinessLogicLayer.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Planifier.Core.Contracts\Planifier.Core.Contracts.csproj">
-      <Project>{ef9b8d46-3cf1-419c-b306-fc44f6f21418}</Project>
-      <Name>Planifier.Core.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Planifier.Core\Planifier.Core.csproj">
-      <Project>{745B8186-7A32-4D01-85F3-34237BA490C6}</Project>
-      <Name>Planifier.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Planifier.Data.Contracts\Planifier.Data.Contracts.csproj">
-      <Project>{54726ce6-da7a-4708-8d12-69010e137567}</Project>
-      <Name>Planifier.Data.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Planifier.DataAccess.Object\Planifier.DataAccess.Object.csproj">
-      <Project>{0A043E5D-F35E-4E72-9FCD-8AFB5D9AA35B}</Project>
+      <Project>{0a043e5d-f35e-4e72-9fcd-8afb5d9aa35b}</Project>
       <Name>Planifier.DataAccess.Object</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Planifier.DataAccess\Planifier.DataAccess.csproj">
-      <Project>{E632F8F4-700D-426F-A161-72115FC45456}</Project>
-      <Name>Planifier.DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

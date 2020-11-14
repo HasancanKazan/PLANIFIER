@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Planifier.DataAccess.Abstract
+namespace Planifier.Data.Contracts
 {
     public interface IPlanifierUnitOfWork : IDisposable
     {
