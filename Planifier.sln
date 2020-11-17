@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planifier.Core.Contracts", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planifier.Core", "Planifier.Core\Planifier.Core.csproj", "{745B8186-7A32-4D01-85F3-34237BA490C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planifier.WebAPI", "Planifier.WebAPI\Planifier.WebAPI.csproj", "{E5CB8BA7-0306-4E18-9984-C8FD2EA727A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{745B8186-7A32-4D01-85F3-34237BA490C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{745B8186-7A32-4D01-85F3-34237BA490C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{745B8186-7A32-4D01-85F3-34237BA490C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5CB8BA7-0306-4E18-9984-C8FD2EA727A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5CB8BA7-0306-4E18-9984-C8FD2EA727A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5CB8BA7-0306-4E18-9984-C8FD2EA727A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5CB8BA7-0306-4E18-9984-C8FD2EA727A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{54726CE6-DA7A-4708-8D12-69010E137567} = {0740385E-BA29-47B4-AE4C-A5CDB52C0085}
 		{EF9B8D46-3CF1-419C-B306-FC44F6F21418} = {D27CB433-D3CF-4E0F-A0EC-1C98CF983A8B}
 		{745B8186-7A32-4D01-85F3-34237BA490C6} = {D27CB433-D3CF-4E0F-A0EC-1C98CF983A8B}
+		{E5CB8BA7-0306-4E18-9984-C8FD2EA727A8} = {4FCDCD67-937C-4550-A485-69B41B60AC92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5869101F-2D6B-4CA6-B43E-84DAB692A836}
