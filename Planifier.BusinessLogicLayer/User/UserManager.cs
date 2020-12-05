@@ -22,7 +22,6 @@ namespace Planifier.BusinessLogicLayer.User
         }
 
         private static IPlanifierUnitOfWork uow = new PlanifierUnitOfWork(PlanifierRepositoryBase.CreateContext());
-        private readonly IPlanifierRepository<USER> userRep = uow.GetRepository<USER>();
 
         public Task<UserResponse> UserSearch(UserRequest request)
         {
@@ -57,7 +56,7 @@ namespace Planifier.BusinessLogicLayer.User
 
                 return base.ExecuteWithExeptionHandledOperation(async () =>
                 {
-                    var user = userRep.Find(query)
+                    var user = _userRepository.Get(query)
                                   .OrderByDescending(f => f.FirstName)
                                   .FirstOrDefault();
                     return Mapper.Map<UserResponse>(user);

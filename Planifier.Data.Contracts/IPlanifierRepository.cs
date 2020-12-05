@@ -10,12 +10,11 @@ namespace Planifier.Data.Contracts
     public interface IPlanifierRepository<T>
     {
         void Add(T obj);
-        int Insert(T obj);
-        int Delete(T obj);
-        int Update(T obj);
-        IEnumerable<T> FindAll();
-        IEnumerable<T> Find(Expression<Func<T, bool>> where);
-        Task<T> FindOne(Expression<Func<T, bool>> where);
-        Task<T> GetById(object id);
+        void Update(T obj);
+        void Delete(T obj);
+        Task<T> GetAsync(T id);
+        IEnumerable<T> Get(Expression<Func<T, bool>> where);
+        IQueryable<T> GetAll(int skip, int take);
+        IQueryable<T> GetAll(int skip, int take, Expression<Func<T, bool>> expression);
     }
 }

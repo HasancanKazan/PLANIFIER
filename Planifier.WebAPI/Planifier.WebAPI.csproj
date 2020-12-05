@@ -227,11 +227,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Planifier.BusinessLogicLayer.Interface\Planifier.BusinessLogicLayer.Interface.csproj">
-      <Project>{B10EFC6E-8572-4A15-8AB5-4416C4A33D73}</Project>
+      <Project>{b10efc6e-8572-4a15-8ab5-4416c4a33d73}</Project>
       <Name>Planifier.BusinessLogicLayer.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Planifier.BusinessLogicLayer\Planifier.BusinessLogicLayer.csproj">
-      <Project>{C035720C-98BD-4295-B164-0E033038E456}</Project>
+      <Project>{c035720c-98bd-4295-b164-0e033038e456}</Project>
       <Name>Planifier.BusinessLogicLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Planifier.Core.Contracts\Planifier.Core.Contracts.csproj">

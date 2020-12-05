@@ -20,47 +20,41 @@ namespace Planifier.DataAccess
             _dbContext = databaseContext; //PlanifierRepositoryBase.CreateContext();
             _dbSet = _dbContext.Set<T>();
         }
-        
+        public void Add(T obj)
+        {
+            _dbSet.Add(obj);
+        }
 
-        public int Insert(T obj)
-        {
-            _dbSet.Add(obj);
-            return _dbContext.SaveChanges();
-        }
-        public int Update(T obj)
-        {
-            _dbSet.Add(obj);
-            return _dbContext.SaveChanges();
-        }
-        public int Delete(T obj)
+        public void Delete(T obj)
         {
             _dbSet.Remove(obj);
-            return _dbContext.SaveChanges();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> where)
+        public void Update(T obj)
+        {
+            _dbSet.Attach(obj);
+            _dbContext.Entry(obj).State = EntityState.Modified;
+        }
+
+
+        public IEnumerable<T> Get(Expression<Func<T, bool>> where)
         {
             return _dbSet.Where(where).ToList();
         }
 
-        public  IEnumerable<T> FindAll()
+        public IQueryable<T> GetAll(int skip, int take)
         {
-            return  _dbSet.ToList();
+           return _dbSet.Skip(skip).Take(take);
         }
 
-        public async Task<T> GetById(object id)
+        public IQueryable<T> GetAll(int skip, int take, Expression<Func<T, bool>> expression)
         {
-            return await _dbSet.FindAsync(id);
+            return GetAll(skip, take).Where(expression);
         }
 
-        public async Task<T> FindOne(Expression<Func<T, bool>> where)
+        public Task<T> GetAsync(T id)
         {
-            return await _dbSet.FirstOrDefaultAsync(where);
-        }
-
-        public void Add(T obj)
-        {
-            _dbSet.Add(obj);
+            return _dbSet.FindAsync(id);
         }
     }
 }
