@@ -17,7 +17,6 @@ namespace Planifier.WebAPI.Controllers
             _userManager = userManager;
         }
 
-        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -25,13 +24,6 @@ namespace Planifier.WebAPI.Controllers
 
         public ActionResult About()
         {
-            var userRequest = new UserRequest
-            {
-                UserId = 1
-            };
-            var user = _userManager.UserSearch(userRequest);
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -39,6 +31,11 @@ namespace Planifier.WebAPI.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Login()
+        {
             return View();
         }
     }
